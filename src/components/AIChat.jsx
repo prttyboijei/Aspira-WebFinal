@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 const PREMIUM_FEATURES = [
-  { id: 'resume', label: 'Smart Resume Builder', icon: '📄', locked: true },
-  { id: 'interview', label: 'AI Interview Simulation', icon: '🎤', locked: true },
-  { id: 'mock', label: 'Personalized Mock Interviews', icon: '🎯', locked: true },
-  { id: 'guidance', label: 'Career Mentorship', icon: '🎓', locked: true },
+  { id: 'resume', label: 'Smart Resume Builder', icon: '□', locked: true },
+  { id: 'interview', label: 'AI Interview Simulation', icon: '○', locked: true },
+  { id: 'mock', label: 'Personalized Mock Interviews', icon: '◆', locked: true },
+  { id: 'guidance', label: 'Career Mentorship', icon: '△', locked: true },
 ];
 
 export default function AIChat({ isOpen, onClose, isPremium }) {
@@ -80,7 +80,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 24 }}>🤖</span>
+          <span style={{ fontSize: 24 }}>◆</span>
           <div>
             <div style={{ fontWeight: 700, fontSize: 14, color: `var(--color-text)` }}>Aspira AI</div>
             <div style={{ fontSize: 12, color: `var(--color-textSecondary)` }}>
@@ -149,7 +149,36 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
 
       {/* Content */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {activeTab === 'chat' ? (
+        {!isPremium && activeTab === 'chat' ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 20, textAlign: 'center' }}>
+            <div style={{ fontSize: 48 }}>🔒</div>
+            <div>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: `var(--color-text)`, margin: '0 0 8px 0' }}>
+                Unlock Premium Features
+              </h3>
+              <p style={{ fontSize: 14, color: `var(--color-textSecondary)`, margin: 0, marginBottom: 16 }}>
+                Upgrade to access AI chat and exclusive features
+              </p>
+            </div>
+            <button
+              style={{
+                background: `var(--color-primary)`,
+                color: 'white',
+                border: 'none',
+                borderRadius: 8,
+                padding: '12px 24px',
+                fontSize: 14,
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
+            >
+              Upgrade to Premium • ₱59/month
+            </button>
+          </div>
+        ) : activeTab === 'chat' ? (
           <>
             {messages.map((msg) => (
               <div
@@ -177,6 +206,40 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
           </>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {!isPremium && (
+              <div
+                style={{
+                  padding: '16px',
+                  borderRadius: 12,
+                  background: `var(--color-primary)`,
+                  color: 'white',
+                  textAlign: 'center',
+                  border: `1px solid var(--color-primary)`,
+                }}
+              >
+                <div style={{ fontWeight: 700, marginBottom: 8 }}>🌟 Premium Features</div>
+                <p style={{ fontSize: 13, margin: '0 0 12px 0', opacity: 0.95 }}>
+                  Unlock all advanced features with Premium
+                </p>
+                <button
+                  style={{
+                    background: 'white',
+                    color: `var(--color-primary)`,
+                    border: 'none',
+                    borderRadius: 6,
+                    padding: '8px 16px',
+                    fontSize: 12,
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
+                >
+                  Upgrade Now
+                </button>
+              </div>
+            )}
             {PREMIUM_FEATURES.map((feature) => (
               <div
                 key={feature.id}

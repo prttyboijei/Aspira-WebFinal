@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { notifications as initialNotifs } from '../data/mockData';
 
 const TYPE_STYLE = {
-  validation:   { icon: '✅', color: '#1A9E6E', bg: '#E0F5EF', bar: '#1A9E6E' },
-  profile_view: { icon: '👁',  color: '#0E8A7C', bg: '#E8F5F3', bar: '#0E8A7C' },
-  match:        { icon: '⭐', color: '#C9963A', bg: '#F5F0E8', bar: '#C9963A' },
-  system:       { icon: '🔔', color: '#6B7A90', bg: '#E8EBF0', bar: '#6B7A90' },
+  validation:   { icon: '✓', color: '#1A9E6E', bg: '#E0F5EF', bar: '#1A9E6E' },
+  profile_view: { icon: '○',  color: '#0E8A7C', bg: '#E8F5F3', bar: '#0E8A7C' },
+  match:        { icon: '★', color: '#C9963A', bg: '#F5F0E8', bar: '#C9963A' },
+  system:       { icon: '⊙', color: '#6B7A90', bg: '#E8EBF0', bar: '#6B7A90' },
 };
 
 export default function Notifications({ setActivePage }) {
@@ -61,7 +61,7 @@ export default function Notifications({ setActivePage }) {
       {/* List */}
       {notifs.length === 0 ? (
         <div className="fade-in" style={{ textAlign: 'center', padding: '80px 0', color: '#6B7A90' }}>
-          <div style={{ fontSize: 52, marginBottom: 14 }}>🔔</div>
+          <div style={{ fontSize: 52, marginBottom: 14 }}>⊙</div>
           <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>You're all caught up</div>
           <div style={{ fontSize: 14 }}>No new notifications right now.</div>
         </div>

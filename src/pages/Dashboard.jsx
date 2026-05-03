@@ -11,6 +11,50 @@ export default function Dashboard({ setActivePage, showLogModal: parentShowLogMo
 
   return (
     <div style={{ padding: '24px', maxWidth: 1200, margin: '0 auto' }}>
+      {/* Download App Banner */}
+      <div
+        className="fade-up"
+        style={{
+          background: `linear-gradient(135deg, var(--color-primary), var(--color-primaryHover))`,
+          borderRadius: 14,
+          padding: '20px 24px',
+          marginBottom: 28,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16,
+          color: 'white',
+          flexWrap: 'wrap',
+        }}
+      >
+        <div>
+          <h3 style={{ fontSize: 16, fontWeight: 700, margin: '0 0 4px 0' }}>
+            📱 Get Aspira on Your Phone
+          </h3>
+          <p style={{ fontSize: 14, opacity: 0.95, margin: 0 }}>
+            Stay updated with push notifications. Download the Aspira mobile app now.
+          </p>
+        </div>
+        <button
+          style={{
+            background: 'white',
+            color: 'var(--color-primary)',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 20px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            fontSize: 13,
+            whiteSpace: 'nowrap',
+            transition: 'all 0.2s',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
+        >
+          Download App
+        </button>
+      </div>
+
       {/* Greeting */}
       <div className="fade-up" style={{ marginBottom: 32 }}>
         <div style={{ fontSize: 13, color: 'var(--color-textSecondary)', fontWeight: 500, marginBottom: 4 }}>
@@ -25,7 +69,7 @@ export default function Dashboard({ setActivePage, showLogModal: parentShowLogMo
             lineHeight: 1.2,
           }}
         >
-          Good {getGreeting()}, {student.name.split(' ')[0]} 👋
+          Good {getGreeting()}, {student.name.split(' ')[0]} ◦
         </h1>
         <p style={{ color: 'var(--color-textSecondary)', marginTop: 6, fontSize: 15 }}>
           Here's your verification progress at a glance.
@@ -50,7 +94,7 @@ export default function Dashboard({ setActivePage, showLogModal: parentShowLogMo
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ fontSize: 18 }}>⏳</span>
+            <span style={{ fontSize: 18 }}>◐</span>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text)' }}>
               You have <span style={{ color: 'var(--color-primary)' }}>{pending} task{pending > 1 ? 's' : ''}</span> awaiting supervisor validation.
             </span>
@@ -114,9 +158,9 @@ export default function Dashboard({ setActivePage, showLogModal: parentShowLogMo
 
         {/* Stat Cards */}
         {[
-          { label: 'Verified Tasks', value: verified, icon: '✅', color: '#1A9E6E', bg: '#E0F5EF' },
-          { label: 'Pending Validation', value: pending, icon: '⏳', color: '#D97B20', bg: '#FEF3E8' },
-          { label: 'Skills Logged', value: student.skills.length, icon: '⚡', color: 'var(--color-primary)', bg: '#E8F5F3' },
+          { label: 'Verified Tasks', value: verified, icon: '✓', color: '#1A9E6E', bg: '#E0F5EF' },
+          { label: 'Pending Validation', value: pending, icon: '◐', color: '#D97B20', bg: '#FEF3E8' },
+          { label: 'Skills Logged', value: student.skills.length, icon: '◆', color: 'var(--color-primary)', bg: '#E8F5F3' },
         ].map((stat, i) => (
           <div
             key={i}
@@ -350,7 +394,7 @@ function LogModal({ onClose }) {
                 }}
               >
                 <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
-                  🤖 Supervisor preview
+                  ◆ Supervisor preview
                 </div>
                 <p style={{ fontSize: 14, color: 'var(--color-text)', fontStyle: 'italic' }}>"{aiPreview}"</p>
               </div>
@@ -383,7 +427,7 @@ function LogModal({ onClose }) {
                 generatePreview();
                 setStep(2);
               } else {
-                alert('Experience submitted for validation! ✅');
+                alert('Experience submitted for validation! ✓');
                 onClose();
               }
             }}

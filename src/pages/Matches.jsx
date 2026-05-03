@@ -187,7 +187,7 @@ export default function Matches() {
             />
           ))}
           <div style={{ textAlign: 'center', color: '#0E8A7C', fontSize: 14, fontWeight: 600, marginTop: 8 }}>
-            ⭐ Analyzing your skills against open slots...
+            ★ Analyzing your skills against open slots...
           </div>
         </div>
       )}
@@ -267,7 +267,7 @@ export default function Matches() {
                           </span>
                           {isApplied && (
                             <span style={{ background: '#E0F5EF', color: '#1A9E6E', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700 }}>
-                              ✓ Applied
+                              • Applied
                             </span>
                           )}
                         </div>
@@ -294,7 +294,7 @@ export default function Matches() {
                                 border: '1px solid #C0E8E3',
                               }}
                             >
-                              ✓ {skill}
+                              • {skill}
                             </span>
                           ))}
                           {slot.missing.map((skill) => (
@@ -449,7 +449,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
       <div style={{ marginBottom: 20 }}>
         {slot.matched.length > 0 && (
           <>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#1A9E6E', marginBottom: 8 }}>✅ You have these</div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#1A9E6E', marginBottom: 8 }}>✓ You have these</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
               {slot.matched.map((s) => (
                 <span key={s} style={{ background: '#E0F5EF', color: '#1A9E6E', borderRadius: 6, padding: '3px 10px', fontSize: 12, fontWeight: 600 }}>
@@ -515,7 +515,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
         onMouseEnter={(e) => (e.currentTarget.style.background = isApplied ? '#158A5E' : '#0D7A6D')}
         onMouseLeave={(e) => (e.currentTarget.style.background = isApplied ? '#1A9E6E' : '#0E8A7C')}
       >
-        {isApplied ? '✓ Applied — Undo' : '→ Express Interest'}
+        {isApplied ? '• Applied — Undo' : '→ Express Interest'}
       </button>
       {!isApplied && (
         <p style={{ fontSize: 12, color: '#6B7A90', textAlign: 'center', marginTop: 8, lineHeight: 1.5 }}>

@@ -1,13 +1,23 @@
 import { useState, useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
-export default function TopNav({ setActivePage, setMenuOpen, menuOpen }) {
+export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLogModal, setIsChatOpen }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [notificationCount] = useState(2);
 
+  const quickActions = [
+    { id: 'log-task', label: 'Log Experience', icon: '■' },
+    { id: 'matches', label: 'Find Matches', icon: '★' },
+    { id: 'ai-chat', label: 'AI Assistant', icon: '◆' },
+  ];
+
   const menuItems = [
     { id: 'notifications', label: 'Notifications', icon: '⊙', badge: notificationCount },
+    { id: 'separator' },
+    ...quickActions,
+    { id: 'separator' },
+    { id: 'profile', label: 'My Profile', icon: '●' },
     { id: 'preferences', label: 'Preferences', icon: '◇' },
     { id: 'appearance', label: 'Appearance', icon: '◐', submenu: true },
     { id: 'help', label: 'Help', icon: '?' },
@@ -22,14 +32,26 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen }) {
   ];
 
   const handleMenuItemClick = (id) => {
+    if (id === 'separator') return;
     if (id === 'notifications') {
       setActivePage('notifications');
+      setProfileMenuOpen(false);
+    } else if (id === 'profile') {
+      setActivePage('profile');
+      setProfileMenuOpen(false);
+    } else if (id === 'log-task') {
+      setShowLogModal?.(true);
+      setProfileMenuOpen(false);
+    } else if (id === 'matches') {
+      setActivePage('matches');
+      setProfileMenuOpen(false);
+    } else if (id === 'ai-chat') {
+      setIsChatOpen?.(true);
       setProfileMenuOpen(false);
     } else if (id === 'logout') {
       localStorage.clear();
       window.location.href = '/';
     }
-    // Add other menu actions as needed
   };
 
   return (
@@ -155,9 +177,11 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen }) {
               overflow: 'hidden',
             }}
           >
-            {menuItems.map((item) => (
-              <div key={item.id}>
-                {item.submenu ? (
+            {menuItems.map((item, idx) => (
+              <div key={item.id || idx}>
+                {item.id === 'separator' ? (
+                  <div style={{ height: 1, background: `var(--color-border)`, margin: '4px 0' }} />
+                ) : item.submenu ? (
                   <div>
                     <div
                       style={{
@@ -197,10 +221,7 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen }) {
                   </div>
                 ) : (
                   <button
-                    onClick={() => {
-                      handleMenuItemClick(item.id);
-                      setProfileMenuOpen(false);
-                    }}
+                    onClick={() => handleMenuItemClick(item.id)}
                     style={{
                       width: '100%',
                       padding: '12px 16px',
@@ -211,14 +232,17 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen }) {
                       color: item.danger ? '#C93A3A' : `var(--color-text)`,
                       cursor: 'pointer',
                       textAlign: 'left',
-                      borderBottom: item.id !== menuItems[menuItems.length - 1].id ? `1px solid var(--color-border)` : 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      borderBottom: idx !== menuItems.length - 1 && menuItems[idx + 1]?.id !== 'separator' ? `1px solid var(--color-border)` : 'none',
                       transition: 'background-color 0.15s',
                     }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `var(--color-surface)`)}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                   >
-                    <span style={{ marginRight: 8 }}>{item.icon}</span>
-                    {item.label}
+                    <span>{item.icon}</span>
+                    <span>{item.label}</span>
                     {item.badge && (
                       <span
                         style={{

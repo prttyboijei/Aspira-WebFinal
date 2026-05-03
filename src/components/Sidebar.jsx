@@ -35,7 +35,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
 
   return (
     <>
-      {/* Mobile overlay */}
+      {/* Mobile overlay - proper z-index layering */}
       {isOpen && (
         <div
           onClick={onClose}
@@ -43,7 +43,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
             position: 'fixed',
             inset: 0,
             background: 'rgba(0,0,0,0.5)',
-            zIndex: 90,
+            zIndex: 98,
             display: 'none',
             '@media (max-width: 768px)': {
               display: 'block',
@@ -65,7 +65,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
           left: 0,
           top: 72, // TopNav height
           bottom: 0,
-          zIndex: 100,
+          zIndex: 99,
           overflow: 'hidden',
           borderRight: `1px solid var(--color-border)`,
           '@media (max-width: 768px)': {

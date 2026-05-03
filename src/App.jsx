@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import TopNav from './components/TopNav';
-import BottomNav from './components/BottomNav';
 import Sidebar from './components/Sidebar';
 import AIChat from './components/AIChat';
+import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
 import Experiences from './pages/Experiences';
 import Matches from './pages/Matches';
@@ -24,6 +24,12 @@ function AppContent() {
   const [showLogModal, setShowLogModal] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isPremium] = useState(false); // TODO: Get from user auth/profile
+  const [hasEnteredApp, setHasEnteredApp] = useState(false);
+
+  // Show welcome page on first load
+  if (!hasEnteredApp) {
+    return <Welcome onEnterApp={() => setHasEnteredApp(true)} />;
+  }
 
   const PageComponent = PAGES[activePage] || Dashboard;
 
@@ -37,9 +43,15 @@ function AppContent() {
       }}
     >
       {/* Top Navigation */}
-      <TopNav setActivePage={setActivePage} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <TopNav 
+        setActivePage={setActivePage} 
+        menuOpen={menuOpen} 
+        setMenuOpen={setMenuOpen}
+        setShowLogModal={setShowLogModal}
+        setIsChatOpen={setIsChatOpen}
+      />
 
-      {/* Sidebar - Show on desktop, hide on mobile when menuOpen is false */}
+      {/* Sidebar */}
       <Sidebar
         activePage={activePage}
         setActivePage={setActivePage}
@@ -47,13 +59,12 @@ function AppContent() {
         onClose={() => setMenuOpen(false)}
       />
 
-      {/* Main content */}
+      {/* Main content - adjusted for no bottom nav */}
       <main
         style={{
           flex: 1,
           marginTop: 72, // TopNav height
-          marginBottom: 80, // BottomNav height for mobile
-          minHeight: 'calc(100vh - 152px)',
+          minHeight: 'calc(100vh - 72px)',
           overflowY: 'auto',
           paddingBottom: 16,
           '@media (max-width: 768px)': {
@@ -64,9 +75,6 @@ function AppContent() {
       >
         <PageComponent setActivePage={setActivePage} showLogModal={showLogModal} setShowLogModal={setShowLogModal} />
       </main>
-
-      {/* Bottom Navigation - Mobile only */}
-      <BottomNav setActivePage={setActivePage} onLogTask={() => setShowLogModal(true)} />
 
       {/* AI Chat */}
       <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} isPremium={isPremium} />
