@@ -121,3 +121,26 @@ a { text-decoration: none; color: inherit; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--slate-light); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--slate); }
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .mobile-overlay {
+    display: block !important;
+  }
+
+  .sidebar-container {
+    transform: var(--sidebar-transform, translateX(-100%)) !important;
+    height: calc(100vh - 72px) !important;
+  }
+
+  .mobile-close-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-close-btn:hover {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+}

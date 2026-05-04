@@ -4,28 +4,28 @@ const NAV_ITEMS = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    icon: '◆',
+    icon: '🏠',
   },
   {
     id: 'experiences',
-    label: 'Experiences',
-    icon: '■',
+    label: 'Log Task',
+    icon: '📝',
   },
   {
     id: 'matches',
-    label: 'Internship Matches',
-    icon: '★',
+    label: 'Internships',
+    icon: '💼',
     badge: '3',
   },
   {
     id: 'profile',
     label: 'My Profile',
-    icon: '●',
+    icon: '👤',
   },
   {
     id: 'notifications',
     label: 'Notifications',
-    icon: '⊙',
+    icon: '🔔',
     badge: '2',
   },
 ];
@@ -45,15 +45,15 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
             background: 'rgba(0,0,0,0.5)',
             zIndex: 98,
             display: 'none',
-            '@media (max-width: 768px)': {
-              display: 'block',
-            },
+            pointerEvents: 'auto',
           }}
+          className="mobile-overlay"
         />
       )}
 
       {/* Sidebar */}
       <aside
+        className="sidebar-container"
         style={{
           width: collapsed ? 68 : 240,
           minHeight: '100vh',
@@ -63,19 +63,39 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
           transition: 'width 0.25s ease, transform 0.25s ease',
           position: 'fixed',
           left: 0,
-          top: 72, // TopNav height
+          top: 72,
           bottom: 0,
           zIndex: 99,
           overflow: 'hidden',
           borderRight: `1px solid var(--color-border)`,
-          '@media (max-width: 768px)': {
-            transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
-            top: 72,
-            height: 'calc(100vh - 72px)',
-            width: collapsed ? 68 : 240,
-          },
+          transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
         }}
       >
+        {/* Mobile close button */}
+        <button
+          onClick={onClose}
+          style={{
+            display: 'none',
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            background: 'transparent',
+            border: 'none',
+            color: `var(--color-textSecondary)`,
+            cursor: 'pointer',
+            fontSize: 20,
+            zIndex: 100,
+            padding: 0,
+            lineHeight: 1,
+          }}
+          className="mobile-close-btn"
+          title="Close menu"
+        >
+          ✕
+        </button>
         {/* Nav Items */}
         <nav style={{ flex: 1, padding: '16px 10px', display: 'flex', flexDirection: 'column', gap: 4 }}>
           {NAV_ITEMS.map((item) => {

@@ -7,22 +7,22 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
   const [notificationCount] = useState(2);
 
   const quickActions = [
-    { id: 'log-task', label: 'Log Experience', icon: '■' },
-    { id: 'matches', label: 'Find Matches', icon: '★' },
-    { id: 'ai-chat', label: 'AI Assistant', icon: '◆' },
+    { id: 'log-task', label: 'Log Experience', icon: '📝' },
+    { id: 'matches', label: 'Find Matches', icon: '💼' },
+    { id: 'ai-chat', label: 'AI Assistant', icon: '🤖' },
   ];
 
   const menuItems = [
-    { id: 'notifications', label: 'Notifications', icon: '⊙', badge: notificationCount },
+    { id: 'notifications', label: 'Notifications', icon: '🔔', badge: notificationCount },
     { id: 'separator' },
     ...quickActions,
     { id: 'separator' },
-    { id: 'profile', label: 'My Profile', icon: '●' },
-    { id: 'preferences', label: 'Preferences', icon: '◇' },
-    { id: 'appearance', label: 'Appearance', icon: '◐', submenu: true },
-    { id: 'help', label: 'Help', icon: '?' },
-    { id: 'about', label: 'About', icon: 'ⓘ' },
-    { id: 'logout', label: 'Logout', icon: '⊠', danger: true },
+    { id: 'profile', label: 'My Profile', icon: '👤' },
+    { id: 'preferences', label: 'Preferences', icon: '⚙️' },
+    { id: 'appearance', label: 'Appearance', icon: '🎨', submenu: true },
+    { id: 'help', label: 'Help', icon: '❓' },
+    { id: 'about', label: 'About', icon: 'ℹ️' },
+    { id: 'logout', label: 'Logout', icon: '🚪', danger: true },
   ];
 
   const appearanceOptions = [
