@@ -48,6 +48,7 @@ function AppContent() {
       <div className="top-nav">
         <TopNav 
           setActivePage={setActivePage} 
+          activePage={activePage}
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen}
           setShowLogModal={setShowLogModal}

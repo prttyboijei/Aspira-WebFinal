@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
-export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLogModal, setIsChatOpen }) {
+export default function TopNav({ activePage, setActivePage, setMenuOpen, menuOpen, setShowLogModal, setIsChatOpen }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [notificationCount] = useState(2);
