@@ -23,7 +23,18 @@ export default function Dashboard({ setActivePage }) {
             <p style={{ fontSize: 14, opacity: 0.8 }}>Good morning!</p>
             <p style={{ fontFamily: 'var(--font-head)', fontSize: 18, fontWeight: 800 }}>{student.name}</p>
           </div>
-          <div style={{ fontSize: 24 }}>🔔</div>
+          <div
+            style={{
+              background: 'rgba(255,255,255,0.16)',
+              borderRadius: 12,
+              padding: '10px 14px',
+              color: 'white',
+              fontSize: 12,
+              fontWeight: 700,
+            }}
+          >
+            Alerts
+          </div>
         </div>
 
         {/* Progress Card */}
@@ -37,7 +48,7 @@ export default function Dashboard({ setActivePage }) {
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
-              <p style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>⚡ Profile Completion</p>
+              <p style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Profile Completion</p>
               <p style={{ fontSize: 14 }}>Your Profile is {Math.round(student.verificationScore)}% done</p>
             </div>
             <div style={{ position: 'relative' }}>
@@ -72,8 +83,7 @@ export default function Dashboard({ setActivePage }) {
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: 24, marginBottom: 8 }}>📄</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gray-5)' }}>{totalCredentials}</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gray-5)', marginBottom: 8 }}>{totalCredentials}</div>
             <div style={{ fontSize: 11, color: 'var(--gray-4)', fontWeight: 600 }}>Credentials</div>
           </div>
           <div
@@ -86,8 +96,7 @@ export default function Dashboard({ setActivePage }) {
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: 24, marginBottom: 8 }}>✅</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gray-5)' }}>{verified}</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gray-5)', marginBottom: 8 }}>{verified}</div>
             <div style={{ fontSize: 11, color: 'var(--gray-4)', fontWeight: 600 }}>Verified</div>
           </div>
         </div>
@@ -102,7 +111,7 @@ export default function Dashboard({ setActivePage }) {
               style={{ fontSize: 12, color: 'var(--accent)', fontWeight: 700, cursor: 'pointer' }}
               onClick={() => setActivePage('experiences')}
             >
-              See all →
+              See all
             </span>
           </div>
 
@@ -129,11 +138,13 @@ export default function Dashboard({ setActivePage }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: 18,
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: exp.status === 'verified' ? 'var(--green)' : 'var(--blue-mid)',
                   flexShrink: 0,
                 }}
               >
-                {exp.type === 'internship' ? '💼' : exp.type === 'course' ? '🎓' : '🏆'}
+                {exp.type === 'internship' ? 'I' : exp.type === 'course' ? 'C' : 'A'}
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--gray-5)', margin: 0 }}>

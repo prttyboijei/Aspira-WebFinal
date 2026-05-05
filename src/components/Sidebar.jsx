@@ -4,28 +4,28 @@ const NAV_ITEMS = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    icon: '🏠',
+      icon: 'D',
   },
   {
     id: 'experiences',
     label: 'Log Task',
-    icon: '📝',
+      icon: 'L',
   },
   {
     id: 'matches',
     label: 'Internships',
-    icon: '💼',
+      icon: 'I',
     badge: '3',
   },
   {
     id: 'profile',
     label: 'My Profile',
-    icon: '👤',
+      icon: 'P',
   },
   {
     id: 'notifications',
     label: 'Notifications',
-    icon: '🔔',
+      icon: 'N',
     badge: '2',
   },
 ];
@@ -94,7 +94,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen, onClose }) 
           className="mobile-close-btn"
           title="Close menu"
         >
-          ✕
+          Close
         </button>
         {/* Nav Items */}
         <nav style={{ flex: 1, padding: '16px 10px', display: 'flex', flexDirection: 'column', gap: 4 }}>

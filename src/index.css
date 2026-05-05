@@ -165,7 +165,7 @@ a { text-decoration: none; color: inherit; }
 
   /* Hide desktop nav on mobile */
   .top-nav, .sidebar {
-    display: none !important;
+    display: block !important; /* Show top nav on mobile */
   }
 
   /* Show bottom nav on mobile */
@@ -175,7 +175,7 @@ a { text-decoration: none; color: inherit; }
 
   /* Adjust main content for mobile */
   main {
-    margin-top: 0 !important;
+    margin-top: 72px !important; /* Account for top nav */
     padding-bottom: 100px !important;
     min-height: 100vh !important;
   }
@@ -189,7 +189,7 @@ a { text-decoration: none; color: inherit; }
 @media (min-width: 769px) {
   /* Hide bottom nav on desktop */
   .bottom-nav {
-    display: none !important;
+    display: none !important; /* Keep bottom nav hidden on desktop */
   }
 
   /* Show desktop nav on desktop */
@@ -198,7 +198,7 @@ a { text-decoration: none; color: inherit; }
   }
 
   /* Adjust main content for desktop */
-  main {
+  main { 
     margin-top: 72px !important;
     padding-bottom: 16px !important;
     min-height: calc(100vh - 72px) !important;
@@ -206,7 +206,7 @@ a { text-decoration: none; color: inherit; }
 
   /* AI chat FAB position on desktop */
   .ai-chat-fab {
-    bottom: 20px !important;
+    bottom: 20px !important; /* Keep AI chat FAB position on desktop */
   }
 }
 

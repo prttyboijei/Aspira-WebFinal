@@ -60,10 +60,10 @@ export default function Welcome({ onEnterApp }) {
         }}
       >
         {[
-          { icon: '✓', title: 'Instant Verification', desc: 'Get verified experiences validated by supervisors' },
-          { icon: '★', title: 'Smart Matching', desc: 'Discover internship opportunities that fit your profile' },
-          { icon: '◆', title: 'AI Assistant', desc: 'Get personalized guidance and interview preparation' },
-          { icon: '⊙', title: 'Premium Features', desc: 'Unlock advanced tools for career excellence' },
+          { title: 'Instant Verification', desc: 'Get verified experiences validated by supervisors' },
+          { title: 'Smart Matching', desc: 'Discover internship opportunities that fit your profile' },
+          { title: 'AI Assistant', desc: 'Get personalized guidance and interview preparation' },
+          { title: 'Premium Features', desc: 'Unlock advanced tools for career excellence' },
         ].map((feature, i) => (
           <div
             key={i}
@@ -87,7 +87,7 @@ export default function Welcome({ onEnterApp }) {
               e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
             }}
           >
-            <div style={{ fontSize: 40, marginBottom: 12 }}>{feature.icon}</div>
+            <div style={{ fontSize: 40, marginBottom: 12, color: 'rgba(255,255,255,0.85)' }}>•</div>
             <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, margin: '0 0 8px 0' }}>
               {feature.title}
             </h3>
@@ -121,13 +121,13 @@ export default function Welcome({ onEnterApp }) {
           e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)';
         }}
       >
-        Enter Dashboard →
+        Enter Dashboard
       </button>
 
       {/* Footer */}
       <div style={{ marginTop: 60, textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>
         <p style={{ margin: 0 }}>
-          Aspira © 2024 • Building the future of OJT verification and career excellence
+          Aspira © 2024 — Building the future of OJT verification and career excellence
         </p>
       </div>
     </div>

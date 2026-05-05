@@ -187,7 +187,7 @@ export default function Matches() {
             />
           ))}
           <div style={{ textAlign: 'center', color: '#0E8A7C', fontSize: 14, fontWeight: 600, marginTop: 8 }}>
-            ★ Analyzing your skills against open slots...
+            Loading matches against open slots...
           </div>
         </div>
       )}
@@ -204,7 +204,7 @@ export default function Matches() {
               const isSaved   = saved[slot.id];
               const tc = TYPE_COLOR[slot.type] || { bg: '#E8EBF0', text: '#6B7A90' };
               const daysLeft = Math.ceil((new Date(slot.deadline) - new Date()) / 86400000);
-
+          Close
               return (
                 <div
                   key={slot.id}
@@ -267,7 +267,7 @@ export default function Matches() {
                           </span>
                           {isApplied && (
                             <span style={{ background: '#E0F5EF', color: '#1A9E6E', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700 }}>
-                              • Applied
+                              Applied
                             </span>
                           )}
                         </div>
@@ -294,7 +294,7 @@ export default function Matches() {
                                 border: '1px solid #C0E8E3',
                               }}
                             >
-                              • {skill}
+                                {skill}
                             </span>
                           ))}
                           {slot.missing.map((skill) => (
@@ -310,7 +310,7 @@ export default function Matches() {
                                 border: '1px dashed #D0D5DD',
                               }}
                             >
-                              + {skill}
+                                {skill}
                             </span>
                           ))}
                         </div>
@@ -319,10 +319,10 @@ export default function Matches() {
                       {/* Right Side */}
                       <div style={{ flexShrink: 0, textAlign: 'right', display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
                         <div style={{ fontSize: 12, color: daysLeft <= 5 ? '#C93A3A' : '#6B7A90', fontWeight: daysLeft <= 5 ? 700 : 400 }}>
-                          {daysLeft <= 0 ? 'Deadline passed' : `${daysLeft}d left`}
+                          {daysLeft <= 0 ? 'Deadline passed' : `${daysLeft} days left`}
                         </div>
                         <div style={{ fontSize: 12, color: '#6B7A90' }}>
-                          {slot.slots} slot{slot.slots > 1 ? 's' : ''} open
+                          {slot.slots} open slot{slot.slots > 1 ? 's' : ''}
                         </div>
                         <div style={{ display: 'flex', gap: 6 }}>
                           <button
@@ -340,7 +340,7 @@ export default function Matches() {
                               justifyContent: 'center',
                             }}
                           >
-                            {isSaved ? '🔖' : '🏷'}
+                              {isSaved ? 'Saved' : 'Tag'}
                           </button>
                         </div>
                       </div>
@@ -352,7 +352,7 @@ export default function Matches() {
 
             {filtered.length === 0 && (
               <div style={{ textAlign: 'center', padding: '60px 0', color: '#6B7A90' }}>
-                <div style={{ fontSize: 48, marginBottom: 12 }}>🔍</div>
+                <div style={{ fontSize: 48, marginBottom: 12, fontWeight: 700 }}>Search</div>
                 <div style={{ fontWeight: 600, fontSize: 16 }}>No {typeFilter} slots found.</div>
                 <div style={{ fontSize: 14, marginTop: 4 }}>Try adjusting your filter.</div>
               </div>
@@ -429,8 +429,8 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
         >
           {quality.label} — {slot.scorePct}%
         </span>
-        <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#6B7A90', fontSize: 20, cursor: 'pointer', lineHeight: 1 }}>
-          ×
+        <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#6B7A90', fontSize: 14, cursor: 'pointer', lineHeight: 1, fontWeight: 700 }}>
+          Close
         </button>
       </div>
 
@@ -439,7 +439,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
       </h2>
       <div style={{ fontSize: 14, fontWeight: 600, color: '#0E8A7C', marginBottom: 4 }}>{slot.company}</div>
       <div style={{ fontSize: 13, color: '#6B7A90', marginBottom: 20 }}>
-        📍 {slot.location} · 🕐 {slot.duration} · 👥 {slot.slots} open slot{slot.slots > 1 ? 's' : ''}
+        {slot.location} · {slot.duration} · {slot.slots} open slot{slot.slots > 1 ? 's' : ''}
       </div>
 
       <Divider label="About the role" />
@@ -449,7 +449,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
       <div style={{ marginBottom: 20 }}>
         {slot.matched.length > 0 && (
           <>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#1A9E6E', marginBottom: 8 }}>✓ You have these</div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#1A9E6E', marginBottom: 8 }}>Required skills matched</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
               {slot.matched.map((s) => (
                 <span key={s} style={{ background: '#E0F5EF', color: '#1A9E6E', borderRadius: 6, padding: '3px 10px', fontSize: 12, fontWeight: 600 }}>
@@ -461,7 +461,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
         )}
         {slot.missing.length > 0 && (
           <>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#D97B20', marginBottom: 8 }}>📌 Gap skills to note</div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#D97B20', marginBottom: 8 }}>Gap skills to note</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
               {slot.missing.map((s) => (
                 <span key={s} style={{ background: '#FEF3E8', color: '#D97B20', borderRadius: 6, padding: '3px 10px', fontSize: 12, fontWeight: 600, border: '1px dashed #F0C070' }}>
@@ -477,7 +477,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
       <ul style={{ paddingLeft: 0, marginBottom: 20, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
         {slot.benefits.map((b) => (
           <li key={b} style={{ fontSize: 13, color: '#6B7A90', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-            <span style={{ color: '#0E8A7C', marginTop: 1 }}>→</span>
+            <span style={{ color: '#0E8A7C', marginTop: 1 }}>Match details</span>
             <span>{b}</span>
           </li>
         ))}
@@ -515,7 +515,7 @@ function SlotDetail({ slot, applied, setApplied, onClose }) {
         onMouseEnter={(e) => (e.currentTarget.style.background = isApplied ? '#158A5E' : '#0D7A6D')}
         onMouseLeave={(e) => (e.currentTarget.style.background = isApplied ? '#1A9E6E' : '#0E8A7C')}
       >
-        {isApplied ? '• Applied — Undo' : '→ Express Interest'}
+        {isApplied ? 'Applied — Undo' : 'Express Interest'}
       </button>
       {!isApplied && (
         <p style={{ fontSize: 12, color: '#6B7A90', textAlign: 'center', marginTop: 8, lineHeight: 1.5 }}>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 const PREMIUM_FEATURES = [
-  { id: 'resume', label: 'Smart Resume Builder', icon: '□', locked: true },
-  { id: 'interview', label: 'AI Interview Simulation', icon: '○', locked: true },
-  { id: 'mock', label: 'Personalized Mock Interviews', icon: '◆', locked: true },
-  { id: 'guidance', label: 'Career Mentorship', icon: '△', locked: true },
+  { id: 'resume', label: 'Smart Resume Builder', locked: true },
+  { id: 'interview', label: 'AI Interview Simulation', locked: true },
+  { id: 'mock', label: 'Personalized Mock Interviews', locked: true },
+  { id: 'guidance', label: 'Career Mentorship', locked: true },
 ];
 
 export default function AIChat({ isOpen, onClose, isPremium }) {
@@ -80,7 +80,6 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 24 }}>◆</span>
           <div>
             <div style={{ fontWeight: 700, fontSize: 14, color: `var(--color-text)` }}>Aspira AI</div>
             <div style={{ fontSize: 12, color: `var(--color-textSecondary)` }}>
@@ -98,7 +97,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
             color: `var(--color-text)`,
           }}
         >
-          ✕
+          Close
         </button>
       </div>
 
@@ -151,7 +150,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {!isPremium && activeTab === 'chat' ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 20, textAlign: 'center' }}>
-            <div style={{ fontSize: 48 }}>🔒</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-text)' }}>Locked Feature</div>
             <div>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: `var(--color-text)`, margin: '0 0 8px 0' }}>
                 Unlock Premium Features
@@ -175,7 +174,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
             >
-              Upgrade to Premium • ₱59/month
+              Upgrade to Premium — ₱59/month
             </button>
           </div>
         ) : activeTab === 'chat' ? (
@@ -217,7 +216,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
                   border: `1px solid var(--color-primary)`,
                 }}
               >
-                <div style={{ fontWeight: 700, marginBottom: 8 }}>🌟 Premium Features</div>
+                <div style={{ fontWeight: 700, marginBottom: 8 }}>Premium Features</div>
                 <p style={{ fontSize: 13, margin: '0 0 12px 0', opacity: 0.95 }}>
                   Unlock all advanced features with Premium
                 </p>
@@ -254,7 +253,6 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ fontSize: 20 }}>{feature.icon}</span>
                     <div>
                       <div style={{ fontWeight: 600, fontSize: 14, color: `var(--color-text)` }}>
                         {feature.label}
@@ -262,7 +260,7 @@ export default function AIChat({ isOpen, onClose, isPremium }) {
                     </div>
                   </div>
                   {feature.locked && !isPremium && (
-                    <span style={{ fontSize: 16 }}>🔒</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-textSecondary)' }}>Locked</span>
                   )}
                 </div>
               </div>

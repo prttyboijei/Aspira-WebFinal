@@ -63,7 +63,7 @@ export default function Experiences() {
       <div className="fade-up fade-up-2" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 24px', color: '#6B7A90' }}>
-            <div style={{ fontSize: 48, marginBottom: 12 }}>📭</div>
+            <div style={{ fontSize: 48, marginBottom: 12, fontWeight: 700 }}>No messages</div>
             <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>No {filter.toLowerCase()} experiences yet.</div>
             <div style={{ fontSize: 14 }}>Log a new task to get started.</div>
           </div>

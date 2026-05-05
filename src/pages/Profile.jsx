@@ -62,8 +62,8 @@ export default function Profile() {
       >
         <div>
           <h2 style={{ fontSize: 28, fontWeight: 800, margin: '0 0 8px 0' }}>{s.name}</h2>
-          <p style={{ fontSize: 16, opacity: 0.95, margin: 0, marginBottom: 16 }}>
-            OJT Student • Aspira Verified ✓
+            <p style={{ fontSize: 16, opacity: 0.95, margin: 0, marginBottom: 16 }}>
+            OJT Student • Aspira Verified
           </p>
           <div style={{ display: 'flex', gap: 24, fontSize: 14 }}>
             <div>
@@ -95,7 +95,7 @@ export default function Profile() {
             onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
           >
-            ↓ Download Profile
+              Download Profile
           </button>
           <button
             style={{
@@ -128,8 +128,8 @@ export default function Profile() {
           border: `1px solid var(--color-border)`,
         }}
       >
-        <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text)', margin: '0 0 16px 0' }}>
-          □ Resume
+          <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text)', margin: '0 0 16px 0' }}>
+            Resume
         </h3>
 
         {resume ? (
@@ -145,7 +145,6 @@ export default function Profile() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ fontSize: 24 }}>📄</span>
               <div>
                 <div style={{ fontWeight: 600, color: 'var(--color-text)' }}>{resume}</div>
                 <div style={{ fontSize: 12, color: 'var(--color-textSecondary)' }}>Ready for download</div>
@@ -161,7 +160,7 @@ export default function Profile() {
                 fontSize: 18,
               }}
             >
-              ✕
+              Remove
             </button>
           </div>
         ) : (
@@ -182,7 +181,7 @@ export default function Profile() {
               onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--color-background)')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--color-surface)')}
             >
-              <div style={{ fontSize: 32, marginBottom: 12 }}>↑</div>
+                <div style={{ fontSize: 32, marginBottom: 12 }} />
               <p style={{ margin: '0 0 4px 0', fontWeight: 600 }}>Upload your resume</p>
               <p style={{ margin: 0, fontSize: 13, color: 'var(--color-textSecondary)' }}>
                 PDF, DOC, or DOCX (max 5MB)
@@ -211,7 +210,7 @@ export default function Profile() {
         }}
       >
         <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text)', margin: '0 0 16px 0' }}>
-          ★ Skills & Competencies
+          Skills & Competencies
         </h3>
 
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 16 }}>
@@ -244,7 +243,7 @@ export default function Profile() {
                   marginLeft: 4,
                 }}
               >
-                ✕
+                Remove
               </button>
             </div>
           ))}
@@ -265,7 +264,7 @@ export default function Profile() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
         >
-          + Add Skill
+          Add Skill
         </button>
       </div>
 
@@ -281,7 +280,7 @@ export default function Profile() {
         }}
       >
         <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text)', margin: '0 0 16px 0' }}>
-          ◆ Work Experience
+          Work Experience
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
@@ -332,7 +331,7 @@ export default function Profile() {
                   fontSize: 18,
                 }}
               >
-                ✕
+                Remove
               </button>
             </div>
           ))}
@@ -353,7 +352,7 @@ export default function Profile() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.9)}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
         >
-          + Add Experience
+          Add Experience
         </button>
       </div>
 
@@ -367,9 +366,9 @@ export default function Profile() {
         }}
       >
         {[
-          { label: 'Profile Completeness', value: '85%', icon: '◆' },
-          { label: 'Applications Sent', value: '12', icon: '★' },
-          { label: 'Profile Shares', value: '23', icon: '⊙' },
+          { label: 'Profile Completeness', value: '85%' },
+          { label: 'Applications Sent', value: '12' },
+          { label: 'Profile Shares', value: '23' },
         ].map((stat, i) => (
           <div
             key={i}
@@ -381,11 +380,12 @@ export default function Profile() {
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: 28, marginBottom: 8 }}>{stat.icon}</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-textSecondary)', marginBottom: 8 }}>
+              {stat.label}
+            </div>
             <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--color-text)', marginBottom: 4 }}>
               {stat.value}
             </div>
-            <div style={{ fontSize: 13, color: 'var(--color-textSecondary)' }}>{stat.label}</div>
           </div>
         ))}
       </div>

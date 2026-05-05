@@ -7,22 +7,22 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
   const [notificationCount] = useState(2);
 
   const quickActions = [
-    { id: 'log-task', label: 'Log Experience', icon: '📝' },
-    { id: 'matches', label: 'Find Matches', icon: '💼' },
-    { id: 'ai-chat', label: 'AI Assistant', icon: '🤖' },
+    { id: 'log-task', label: 'Log Experience' },
+    { id: 'matches', label: 'Find Matches' },
+    { id: 'ai-chat', label: 'AI Assistant' },
   ];
 
   const menuItems = [
-    { id: 'notifications', label: 'Notifications', icon: '🔔', badge: notificationCount },
+    { id: 'notifications', label: 'Notifications', badge: notificationCount },
     { id: 'separator' },
     ...quickActions,
     { id: 'separator' },
-    { id: 'profile', label: 'My Profile', icon: '👤' },
-    { id: 'preferences', label: 'Preferences', icon: '⚙️' },
-    { id: 'appearance', label: 'Appearance', icon: '🎨', submenu: true },
-    { id: 'help', label: 'Help', icon: '❓' },
-    { id: 'about', label: 'About', icon: 'ℹ️' },
-    { id: 'logout', label: 'Logout', icon: '🚪', danger: true },
+    { id: 'profile', label: 'My Profile' },
+    { id: 'preferences', label: 'Preferences' },
+    { id: 'appearance', label: 'Appearance', submenu: true },
+    { id: 'help', label: 'Help' },
+    { id: 'about', label: 'About' },
+    { id: 'logout', label: 'Logout', danger: true },
   ];
 
   const appearanceOptions = [
@@ -64,45 +64,17 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
         height: 72,
         background: `var(--color-sidebar)`,
         borderBottom: `1px solid var(--color-border)`,
-        display: 'flex',
+          display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingX: '16px',
+          padding: '0 16px',
         zIndex: 1000,
         boxShadow: `var(--shadow-sm)`,
       }}
     >
-      {/* Left: Menu Toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          title="Toggle menu"
-          style={{
-            background: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 8,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: `var(--color-text)`,
-            fontSize: 24,
-          }}
-        >
-          ☰
-        </button>
-
-        {/* Logo (desktop only) */}
-        <div
-          style={{
-            display: 'none',
-            '@media (min-width: 768px)': {
-              display: 'flex',
-            },
-            alignItems: 'center',
-            gap: 12,
-          }}
-        >
+      {/* Left: Brand and navigation */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div
             style={{
               width: 36,
@@ -113,12 +85,11 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
+              color: 'white',
+              fontWeight: 800,
             }}
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2L18 7v6l-8 5-8-5V7L10 2z" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
-              <path d="M10 2v16M2 7l8 5 8-5" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-            </svg>
+            A
           </div>
           <div>
             <div
@@ -134,6 +105,26 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
               Aspira
             </div>
           </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          {['dashboard', 'experiences', 'matches', 'notifications'].map((page) => (
+            <button
+              key={page}
+              onClick={() => setActivePage(page)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: activePage === page ? `var(--color-primary)` : `var(--color-textSecondary)`,
+                fontSize: 14,
+                fontWeight: activePage === page ? 700 : 500,
+                cursor: 'pointer',
+                padding: '8px 10px',
+              }}
+            >
+              {page === 'dashboard' ? 'Dashboard' : page === 'experiences' ? 'Experience' : page === 'matches' ? 'Opportunities' : 'Alerts'}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -157,7 +148,7 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `var(--color-surface)`)}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
-          ●
+          Account
         </button>
 
         {/* Profile Dropdown Menu */}
@@ -241,7 +232,6 @@ export default function TopNav({ setActivePage, setMenuOpen, menuOpen, setShowLo
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `var(--color-surface)`)}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                   >
-                    <span>{item.icon}</span>
                     <span>{item.label}</span>
                     {item.badge && (
                       <span

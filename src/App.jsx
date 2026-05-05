@@ -83,7 +83,7 @@ function AppContent() {
         onClick={() => setIsChatOpen(true)}
         title="AI Assistant"
       >
-        🤖
+        AI
       </button>
 
       {/* AI Chat */}

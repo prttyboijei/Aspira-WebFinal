@@ -4,27 +4,27 @@ const NAV_ITEMS = [
   {
     id: 'dashboard',
     label: 'Home',
-    icon: '🏠',
+    icon: 'H',
   },
   {
     id: 'experiences',
     label: 'Progress',
-    icon: '📊',
+    icon: 'P',
   },
   {
     id: 'credentials', // center fab
     label: 'Credentials',
-    icon: '📋',
+    icon: 'C',
   },
   {
     id: 'notifications',
     label: 'Alerts',
-    icon: '🔔',
+    icon: 'A',
   },
   {
     id: 'profile',
     label: 'Settings',
-    icon: '⚙️',
+    icon: 'S',
   },
 ];
 
@@ -66,7 +66,7 @@ export default function BottomNav({ activePage, setActivePage }) {
             fontWeight: 700,
           }}
         >
-          <span style={{ fontSize: 18 }}>{item.icon}</span>
+          <span style={{ fontSize: 18, fontWeight: 700 }}>{item.icon}</span>
           <span>{item.label}</span>
         </button>
       ))}
@@ -96,11 +96,10 @@ export default function BottomNav({ activePage, setActivePage }) {
             boxShadow: '0 6px 20px rgba(59,91,219,0.45)',
             border: '3px solid white',
             cursor: 'pointer',
-            border: 'none',
             color: 'white',
           }}
         >
-          📋
+          C
         </button>
         <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--blue-mid)' }}>
           Credentials
@@ -126,7 +125,7 @@ export default function BottomNav({ activePage, setActivePage }) {
           }}
         >
           <span style={{ fontSize: 18 }}>{item.icon}</span>
-          <span>{item.label}</span>
+          <span style={{ fontWeight: 'bold' }}>{item.label}</span>
         </button>
       ))}
     </div>
