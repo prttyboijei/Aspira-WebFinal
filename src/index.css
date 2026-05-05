@@ -1,5 +1,23 @@
 :root {
-  /* Legacy colors */
+  /* Aspira Design Colors */
+  --blue-deep: #3B5BDB;
+  --blue-mid: #4F6EFF;
+  --blue-pale: #F0F4FF;
+  --accent: #FF6B35;
+  --accent2: #00D4AA;
+  --gray-1: #F8F9FA;
+  --gray-2: #E9ECEF;
+  --gray-3: #ADB5BD;
+  --gray-4: #6C757D;
+  --gray-5: #495057;
+  --green: #28A745;
+  --green-bg: #D4EDDA;
+  --orange: #FD7E14;
+  --orange-bg: #FFE5CC;
+  --red: #DC3545;
+  --red-bg: #F8D7DA;
+
+  /* Legacy colors for compatibility */
   --navy: #0D1F3C;
   --navy-mid: #1A3260;
   --teal: #0E8A7C;
@@ -29,11 +47,12 @@
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', sans-serif;
+  --font-head: 'DM Sans', sans-serif;
 
-  --shadow-sm: 0 1px 4px rgba(13,31,60,0.06);
-  --shadow-md: 0 2px 12px rgba(13,31,60,0.08);
-  --shadow-lg: 0 4px 24px rgba(13,31,60,0.12);
-  --shadow-xl: 0 8px 40px rgba(13,31,60,0.18);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.12);
+  --shadow-xl: 0 8px 40px rgba(0,0,0,0.18);
 }
 
 .dark-theme {
@@ -143,4 +162,81 @@ a { text-decoration: none; color: inherit; }
     background: var(--color-surface) !important;
     color: var(--color-text) !important;
   }
+
+  /* Hide desktop nav on mobile */
+  .top-nav, .sidebar {
+    display: none !important;
+  }
+
+  /* Show bottom nav on mobile */
+  .bottom-nav {
+    display: block !important;
+  }
+
+  /* Adjust main content for mobile */
+  main {
+    margin-top: 0 !important;
+    padding-bottom: 100px !important;
+    min-height: 100vh !important;
+  }
+
+  /* AI chat FAB position on mobile */
+  .ai-chat-fab {
+    bottom: 100px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Hide bottom nav on desktop */
+  .bottom-nav {
+    display: none !important;
+  }
+
+  /* Show desktop nav on desktop */
+  .top-nav, .sidebar {
+    display: block !important;
+  }
+
+  /* Adjust main content for desktop */
+  main {
+    margin-top: 72px !important;
+    padding-bottom: 16px !important;
+    min-height: calc(100vh - 72px) !important;
+  }
+
+  /* AI chat FAB position on desktop */
+  .ai-chat-fab {
+    bottom: 20px !important;
+  }
+}
+
+/* Common styles for main */
+main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* AI Chat FAB */
+.ai-chat-fab {
+  position: fixed;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ai-chat-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255,107,53,0.6);
 }

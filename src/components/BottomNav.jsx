@@ -1,33 +1,34 @@
 import { useState } from 'react';
 
-const QUICK_ACTIONS = [
+const NAV_ITEMS = [
   {
-    id: 'log-task',
-    label: 'Log Task',
-    icon: '+',
-    action: 'log',
+    id: 'dashboard',
+    label: 'Home',
+    icon: '🏠',
   },
   {
     id: 'experiences',
-    label: 'Experiences',
-    icon: '■',
-    action: 'page',
+    label: 'Progress',
+    icon: '📊',
   },
   {
-    id: 'matches',
-    label: 'Matches',
-    icon: '★',
-    action: 'page',
+    id: 'credentials', // center fab
+    label: 'Credentials',
+    icon: '📋',
   },
   {
-    id: 'ai-chat',
-    label: 'AI Chat',
-    icon: '◆',
-    action: 'page',
+    id: 'notifications',
+    label: 'Alerts',
+    icon: '🔔',
+  },
+  {
+    id: 'profile',
+    label: 'Settings',
+    icon: '⚙️',
   },
 ];
 
-export default function BottomNav({ setActivePage, onLogTask }) {
+export default function BottomNav({ activePage, setActivePage }) {
   return (
     <div
       style={{
@@ -35,53 +36,97 @@ export default function BottomNav({ setActivePage, onLogTask }) {
         bottom: 0,
         left: 0,
         right: 0,
-        height: 70,
-        background: `var(--color-sidebar)`,
-        borderTop: `1px solid var(--color-border)`,
+        height: 68,
+        background: 'white',
+        borderTop: `1px solid var(--gray-2)`,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'space-around',
         zIndex: 900,
-        boxShadow: `0 -2px 8px rgba(0,0,0,0.1)`,
-        paddingBottom: 'env(safe-area-inset-bottom)',
+        borderRadius: '0 0 44px 44px',
+        padding: '0 8px 14px',
+        boxShadow: '0 -2px 8px rgba(0,0,0,0.1)',
       }}
     >
-      {QUICK_ACTIONS.map((action) => (
+      {NAV_ITEMS.slice(0, 2).map((item) => (
         <button
-          key={action.id}
-          onClick={() => {
-            if (action.action === 'log') {
-              onLogTask();
-            } else if (action.action === 'page') {
-              setActivePage(action.id);
-            }
-          }}
-          title={action.label}
+          key={item.id}
+          onClick={() => setActivePage(item.id)}
           style={{
-            flex: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 4,
+            gap: 3,
             background: 'transparent',
             border: 'none',
-            color: `var(--color-text)`,
+            color: activePage === item.id ? 'var(--blue-mid)' : 'var(--gray-4)',
             cursor: 'pointer',
-            padding: '8px 0',
-            fontSize: 12,
-            fontWeight: 500,
-            transition: 'all 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = `var(--color-primary)`;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = `var(--color-text)`;
+            padding: '0',
+            fontSize: 9,
+            fontWeight: 700,
           }}
         >
-          <span style={{ fontSize: 24 }}>{action.icon}</span>
-          <span style={{ fontSize: 11 }}>{action.label}</span>
+          <span style={{ fontSize: 18 }}>{item.icon}</span>
+          <span>{item.label}</span>
+        </button>
+      ))}
+
+      {/* Center FAB */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 3,
+          position: 'relative',
+          top: -18,
+        }}
+      >
+        <button
+          onClick={() => setActivePage('credentials')}
+          style={{
+            width: 52,
+            height: 52,
+            borderRadius: '50%',
+            background: `linear-gradient(135deg, var(--blue-mid), var(--accent))`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 22,
+            boxShadow: '0 6px 20px rgba(59,91,219,0.45)',
+            border: '3px solid white',
+            cursor: 'pointer',
+            border: 'none',
+            color: 'white',
+          }}
+        >
+          📋
+        </button>
+        <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--blue-mid)' }}>
+          Credentials
+        </span>
+      </div>
+
+      {NAV_ITEMS.slice(3).map((item) => (
+        <button
+          key={item.id}
+          onClick={() => setActivePage(item.id)}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 3,
+            background: 'transparent',
+            border: 'none',
+            color: activePage === item.id ? 'var(--blue-mid)' : 'var(--gray-4)',
+            cursor: 'pointer',
+            padding: '0',
+            fontSize: 9,
+            fontWeight: 700,
+          }}
+        >
+          <span style={{ fontSize: 18 }}>{item.icon}</span>
+          <span>{item.label}</span>
         </button>
       ))}
     </div>

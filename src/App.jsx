@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import TopNav from './components/TopNav';
 import Sidebar from './components/Sidebar';
+import BottomNav from './components/BottomNav';
 import AIChat from './components/AIChat';
 import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
@@ -16,6 +17,7 @@ const PAGES = {
   matches: Matches,
   profile: Profile,
   notifications: Notifications,
+  credentials: Experiences, // Map credentials to experiences
 };
 
 function AppContent() {
@@ -43,38 +45,46 @@ function AppContent() {
       }}
     >
       {/* Top Navigation */}
-      <TopNav 
-        setActivePage={setActivePage} 
-        menuOpen={menuOpen} 
-        setMenuOpen={setMenuOpen}
-        setShowLogModal={setShowLogModal}
-        setIsChatOpen={setIsChatOpen}
-      />
+      <div className="top-nav">
+        <TopNav 
+          setActivePage={setActivePage} 
+          menuOpen={menuOpen} 
+          setMenuOpen={setMenuOpen}
+          setShowLogModal={setShowLogModal}
+          setIsChatOpen={setIsChatOpen}
+        />
+      </div>
 
       {/* Sidebar */}
-      <Sidebar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        isOpen={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      />
+      <div className="sidebar">
+        <Sidebar
+          activePage={activePage}
+          setActivePage={setActivePage}
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+        />
+      </div>
 
-      {/* Main content - adjusted for no bottom nav */}
+      {/* Main content */}
       <main
-        style={{
-          flex: 1,
-          marginTop: 72, // TopNav height
-          minHeight: 'calc(100vh - 72px)',
-          overflowY: 'auto',
-          paddingBottom: 16,
-          '@media (max-width: 768px)': {
-            marginLeft: 0,
-          },
-        }}
         id="main-content"
       >
         <PageComponent setActivePage={setActivePage} showLogModal={showLogModal} setShowLogModal={setShowLogModal} />
       </main>
+
+      {/* Bottom Navigation for mobile */}
+      <div className="bottom-nav">
+        <BottomNav activePage={activePage} setActivePage={setActivePage} />
+      </div>
+
+      {/* Floating AI Chat Button */}
+      <button
+        className="ai-chat-fab"
+        onClick={() => setIsChatOpen(true)}
+        title="AI Assistant"
+      >
+        🤖
+      </button>
 
       {/* AI Chat */}
       <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} isPremium={isPremium} />
